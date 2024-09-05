@@ -7,7 +7,7 @@ Ce repo regroupe le matériel que j'ai collecté et des notebook python pour est
 
 ## Sources d'information.
 
-Le calcul du DPE est détaillé dans l'Arrêté du 8 octobre 2021 modifiant la méthode de calcul et les modalités d’établissement du diagnostic de performance énergétique publié au [Journal Officiel numero 0240 du 14/10/2021, texte 34](https://www.legifrance.gouv.fr/download/pdf?id=7hpbVyq228foxHzNM7WleDImAyXlPNb9zULelSY01V8=) dont la [copie est disponible](ressources/joe_20211014_0240_0034.pdf).
+Le calcul du DPE est détaillé dans l'Arrêté du 8 octobre 2021 modifiant la méthode de calcul et les modalités d’établissement du diagnostic de performance énergétique publié au [Journal Officiel numero 0240 du 14/10/2021, texte 34](https://www.legifrance.gouv.fr/download/pdf?id=7hpbVyq228foxHzNM7WleDImAyXlPNb9zULelSY01V8=) dont la [copie est disponible](ressources/joe_20211014_0240_0034.pdf). En particulier, l'annexe de ce document comporte toutes les formules et tous les abaques et tables nécessaires au calcul.
 
 Il est complété et modifié par l'arrêté du 25 mars 2024 modifiant les seuils des étiquettes du diagnostic de performanceénergétique pour les logements de petites surfaces et actualisant les tarifs annuels de l’énergie publié au [Journal Officiel numero 0093 du 20/04/2024, texte 15](https://www.legifrance.gouv.fr/download/pdf?id=XVrWD3X2HrCSQ8H60WvMu0H0-O1EhNvzqkhdsD-P4D4=) dont la [copie est disponible](ressources/joe_20240420_0093_0015.pdf).
 
