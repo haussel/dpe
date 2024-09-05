@@ -1,0 +1,14 @@
+# Nref (21°C) Altitude ≥ 800m
+# Mois H1a H1b H1c H2a H2b H2c H2d H3
+Janvier - 744 744 - - 744 744 744
+Février - 672 672 - - 672 672 672
+Mars - 744 744 - - 744 740 744
+Avril - 720 717 - - 720 693 720
+Mai - 708 671 - - 684 648 616
+Juin - 497 466 - - 278 - 207
+Juillet - - - - - - -
+Aout - 121 - - - - - -
+Septembre - 683 626 - - 348 223 -
+Octobre - 638 732 - - 692 618 713
+Novembre - 720 720 - - 720 720 720
+Décembre - 744 744 - - 744 744 744

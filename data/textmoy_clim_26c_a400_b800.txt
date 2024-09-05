@@ -1,0 +1,14 @@
+# Textmoy_clim (°C) Tcons= 26°C Altitude 400m-800m
+# Mois H1a H1b H1c H2a H2b H2c H2d H3
+Janvier - - - - - - - -
+Février - - - - - - - -
+Mars - - - - - - - -
+Avril - - - - - - - -
+Mai - - 29.3 - - 28.5 - 28.4
+Juin 28.4 29.8 29.5 29.5 29.6 30.4 30.6 29.5
+Juillet 28.8 29.0 29.2 29.1 29.3 29.9 30.8 29.5
+Aout 28.9 29.4 29.4 29.0 29.6 31.6 30.2 29.0
+Septembre - - - 28.7 29.9 31.3 28.7 28.5
+Octobre - - - - - 28.7 - -
+Novembre - - - - - - - -
+Décembre - - - - - - - -

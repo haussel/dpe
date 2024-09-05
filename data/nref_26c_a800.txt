@@ -1,0 +1,14 @@
+# Nref (26°C) Altitude ≥ 800m
+# Mois H1a H1b H1c H2a H2b H2c H2d H3
+Janvier - - - - - - - -
+Février - - - - - - - -
+Mars - - - - - - - -
+Avril - - - - - - - -
+Mai - - 5 - - 2 - 4
+Juin - 15 19 - - 14 101 47
+Juillet - 37 46 - - 46 170 105
+Aout - 20 46 - - 37 84 64
+Septembre - - - - - 14 15 2
+Octobre - - - - - 5 - -
+Novembre - - - - - - - -
+Décembre - - - - - - - -

@@ -1,0 +1,14 @@
+# E_fr (kWh/m²) Tcons=28°C Altitude ≥ 800m
+# Mois H1a H1b H1c H2a H2b H2c H2d H3
+Janvier - - - - - - - -
+Février - - - - - - - -
+Mars - - - - - - - -
+Avril - - - - - - - -
+Mai - - 0.33 - - - - -
+Juin - 1.96 1.10 - - 1.95 12.77 6.69
+Juillet - 1.45 1.20 - - 4.82 36.35 11.07
+Aout - 2.72 5.03 - - 8.79 14.76 3.31
+Septembre - - - - - 3.55 - -
+Octobre - - - - - - - -
+Novembre - - - - - - - -
+Décembre - - - - - - - -
