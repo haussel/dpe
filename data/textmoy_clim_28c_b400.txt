@@ -1,0 +1,14 @@
+# Textmoy_clim (°C) Tcons= 28°C Altitude ≤400m
+# Mois H1a H1b H1c H2a H2b H2c H2d H3
+Janvier - - - - - - - -
+Février - - - - - - - -
+Mars - - - - - - - -
+Avril - - - - - - - -
+Mai - 28.5 30.5 - 29.2 29.9 0.0 29.1
+Juin 29.2 29.8 30.0 29.6 30.4 30.2 31.3 30.2
+Juillet 29.7 29.8 30.2 29.8 30.5 30.5 31.7 30.2
+Aout 29.8 30.0 30.2 29.8 29.9 31.8 30.8 29.7
+Septembre 29.3 28.2 28.9 29.6 30.9 32.1 29.5 29.1
+Octobre - - - - 28.4 29.8 - -
+Novembre - - - - - - - -
+Décembre - - - - - - - -

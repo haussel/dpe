@@ -1,0 +1,14 @@
+# Nref (28°C) Altitude ≤400m
+# Mois H1a H1b H1c H2a H2b H2c H2d H3
+Janvier - - - - - - - -
+Février - - - - - - - -
+Mars - - - - - - - -
+Avril - - - - - - - -
+Mai - 5 8 - 6 6 9 20
+Juin 19 39 46 19 24 43 160 97
+Juillet 33 90 88 42 27 92 238 206
+Aout 35 44 91 23 46 62 150 167
+Septembre 6 1 9 10 16 19 56 30
+Octobre - - - - 18 22 - 2
+Novembre - - - - - - - -
+Décembre - - - - - - - -

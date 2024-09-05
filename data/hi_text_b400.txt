@@ -1,0 +1,14 @@
+# Temperature Exterieure en Celsius sous 400m d'alitude
+# Mois H1a H1b H1c H2a H2b H2c H2d H3
+Janvier 2.6 4.7 3.8 5.8 6.1 5.1 4.9 5.9
+Février 3.5 5.2 3.9 4.4 4.2 6.6 5.1 9.4
+Mars 7.7 7.3 8.5 8.6 8.7 9.7 9.3 10.2
+Avril 10.3 10.3 11.6 10.2 10.7 12.2 12.7 13.2
+Mai 12.8 14.0 15.5 13.5 13.4 - - -
+Juin - - - - - - - -
+Juillet - - - - - - - -
+Aout - - - - - - - -
+Septembre 12.3 - - - - - - -
+Octobre 13.8 12.4 5.5 12.4 11.4 15.6 13.6 -
+Novembre 8.8 6.6 7.6 9.4 8.1 9.1 8.9 9.5
+Décembre 5.0 3.8 3.2 6.2 5.6 5.0 5.0 7.6
