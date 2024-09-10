@@ -34,10 +34,8 @@ def read_data_file(filename):
                 filename, result))
     else:
         fullpath = filename
-
-    f = open(fullpath, 'r')
-    lines = f. readlines()
-    f.close()
+    with open(fullpath, 'r') as f:
+        lines = f. readlines()
     return lines
         
 def get_zone_climatique(departement):
@@ -49,7 +47,7 @@ def get_zone_climatique(departement):
     departement: str
        the departement code (e.g. '75', '2A', etc...)
 
-    Output:
+    Output: str
     -------
     returns the zone climatique code.
     """
@@ -67,10 +65,7 @@ def get_zone_climatique(departement):
         result = None
     else:
         result = zc
-    return(zc)
-
-
-
+    return zc
 
 def get_tbase(zone_climatique, altitude):
     """
@@ -105,12 +100,31 @@ def get_tbase(zone_climatique, altitude):
         else:
             tbase = -5.5
     else:
-        raise ValueError('Invalid Zone_climatique: {}'.format(zc))
+        raise ValueError('Invalid Zone_climatique: {}'.format(zone_climatique))
     return(tbase)
 
 def get_table(variable, altitude, zone_climatique, inertie_haute=False):
     """
-    
+    Read a table from section 18.2 and 18.3 of joe_20211014_0240_0034.pdf
+
+    Parameters:
+    -----------
+    variable: str
+        the name of the variable to read. This is the first part of the file name
+
+    altitude: float
+        the altitude
+
+    zone_climatique: str
+        the zone climatique to extract data for
+
+    inertie_haute: bool
+        If true, read the tables from sec 18.3 of buiding with high inertia, otherwize reads the tables from
+        section 18.2
+
+    Output: astropy.Table
+    -------
+        a table with 2 columns, 'Mois' and zone_climatique
     """
     filename = variable
     if inertie_haute:
@@ -121,27 +135,11 @@ def get_table(variable, altitude, zone_climatique, inertie_haute=False):
         filename = filename + '_a800.txt'
     else:
         filename = filename + '_a400_b800.txt'
-    if not os.path.exists(filename):
-        result = []
-        for root, dirs, files in os.walk(DATA_DIR):
-            if filename in files:
-                result.append(os.path.join(root, filename))
-        if len(result) == 1:
-            fullpath = result[0]
-        else:
-            raise ValueError('could not locate {} filename, found {}'.format(
-                filename, result))
-    else:
-        fullpath = filename
 
-    print(fullpath)
-        
-    f = open(fullpath, 'r')
-    lines = f. readlines()
-    f.close()
+    lines = read_data_file(filename)
 
     if len(lines) < 14:
-        raise ValueError('Could not read correctly table {} with len(lines) = {}'.format(fullpath, len(lines)))
+        raise ValueError('Could not read correctly table {} with len(lines) = {}'.format(filename, len(lines)))
             
     bits = lines[1].split()
     icol = None
@@ -183,21 +181,8 @@ def get_E_pv(zone_climatique):
 
 def get_c1(zone_climatique, i_incl):
     filename =  'coiv_' + zone_climatique.lower() + '.csv'
-    if not os.path.exists(filename):
-        result = []
-        for root, dirs, files in os.walk(DATA_DIR):
-            if filename in files:
-                result.append(os.path.join(root, filename))
-                if len(result) == 1:
-                    fullpath = result[0]
-                else:
-                    raise ValueError('could not locate {} filename, found {}'.format(filename, result))
-    else:
-        fullpath = filename
-    f = open(fullpath, 'r')
-    lines = f.readlines()
-    f.close()
-    
+    lines = read_data_file(filename)
+
     m_vals = []
     s_vals = []
     o_vals = []
