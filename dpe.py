@@ -1,5 +1,4 @@
 __author__ = 'haussel'
-import numpy as np
 import os
 import re
 from astropy.table import Table
@@ -34,6 +33,8 @@ def read_data_file(filename):
                 filename, result))
     else:
         fullpath = filename
+    if DEBUG:
+        print("Reading file:{}".format(fullpath))
     with open(fullpath, 'r') as f:
         lines = f. readlines()
     return lines
@@ -65,7 +66,7 @@ def get_zone_climatique(departement):
         result = None
     else:
         result = zc
-    return zc
+    return result
 
 def get_tbase(zone_climatique, altitude):
     """
@@ -101,7 +102,7 @@ def get_tbase(zone_climatique, altitude):
             tbase = -5.5
     else:
         raise ValueError('Invalid Zone_climatique: {}'.format(zone_climatique))
-    return(tbase)
+    return tbase
 
 def get_table(variable, altitude, zone_climatique, inertie_haute=False):
     """
@@ -174,12 +175,25 @@ def get_E_pv(zone_climatique):
     """
     t = Table.read(os.path.join(DATA_DIR, 'e_pv.txt'), format='ascii',
                    header_start=1)
-    return(t['Mois', zone_climatique])
+    return t['Mois', zone_climatique]
 
 
 
 
 def get_c1(zone_climatique, i_incl):
+    '''
+    Read the coefficients d’orientation et d’inclinaison des parois vitrées section 18.5
+
+    Parameters
+    ----------
+    zone_climatique: str
+    i_incl: int
+
+    Returns:
+    astropy.Table
+    -------
+
+    '''
     filename =  'coiv_' + zone_climatique.lower() + '.csv'
     lines = read_data_file(filename)
 
