@@ -7,33 +7,6 @@ from astropy.table import Table
 from .config import DPE_INSTALL_DIR, DEBUG
 DATA_DIR = os.path.join(DPE_INSTALL_DIR, 'data/')
 
-def get_zone_climatique(departement):
-    """
-    find the zone climatique of a departement
-
-    Parameter:
-    ----------
-    departement: str
-       the departement code (e.g. '75', '2A', etc...)
-
-    Output:
-    -------
-    retunrs the zone climatique code.
-    """
-    found = False
-    lines = read_data_file('zones_climatiques.txt')
-    m = re.compile('(\d[\dAB]) (\D+) (H\d[abcd]?)')
-    for line in lines:
-        if line[0] != '#':
-            if not found:
-                for x in m.finditer(line):
-                    if x.group(1) == departement:
-                        found = True
-                        zc = x.group(3)
-    if found:
-        return(zc)
-            
-
 def read_data_file(filename):
     """
     Read a dpe data file
@@ -78,7 +51,7 @@ def get_zone_climatique(departement):
 
     Output:
     -------
-    retunrs the zone climatique code.
+    returns the zone climatique code.
     """
     found = False
     lines = read_data_file('zones_climatiques.txt')
@@ -95,6 +68,9 @@ def get_zone_climatique(departement):
     else:
         result = zc
     return(zc)
+
+
+
 
 def get_tbase(zone_climatique, altitude):
     """
@@ -132,6 +108,68 @@ def get_tbase(zone_climatique, altitude):
         raise ValueError('Invalid Zone_climatique: {}'.format(zc))
     return(tbase)
 
+def get_table(variable, altitude, zone_climatique, inertie_haute=False):
+    """
+    
+    """
+    filename = variable
+    if inertie_haute:
+        filename = 'hi_' + filename
+    if (altitude <= 400):
+        filename = filename + '_b400.txt'
+    elif (altitude >= 800):
+        filename = filename + '_a800.txt'
+    else:
+        filename = filename + '_a400_b800.txt'
+    if not os.path.exists(filename):
+        result = []
+        for root, dirs, files in os.walk(DATA_DIR):
+            if filename in files:
+                result.append(os.path.join(root, filename))
+        if len(result) == 1:
+            fullpath = result[0]
+        else:
+            raise ValueError('could not locate {} filename, found {}'.format(
+                filename, result))
+    else:
+        fullpath = filename
+
+    print(fullpath)
+        
+    f = open(fullpath, 'r')
+    lines = f. readlines()
+    f.close()
+
+    if len(lines) < 14:
+        raise ValueError('Could not read correctly table {} with len(lines) = {}'.format(fullpath, len(lines)))
+            
+    bits = lines[1].split()
+    icol = None
+    for i, bit in enumerate(bits):
+        if bit == zone_climatique:
+            if icol is None:
+                icol = i-1
+            else:
+                raise ValueError("Multiple occurences of {}".format(zone_climatique))
+    if icol is None:
+        raise ValueError("Zone climatique '{}' not found".format(zone_climatique))  
+    mok = []
+    vok = []
+    for i in range(2, 14):
+        bits = lines[i].split()
+        if bits[icol] != '-':
+            vok.append(float(bits[icol]))
+            mok.append(bits[0])
+    if len(vok) > 0:
+        result = Table()
+        result['Mois'] = mok
+        result[zone_climatique] = vok
+    else:
+        result = None
+        raise Warning('All data undefined for zone climatique {}'.format(zone_climatique))
+    return result
+    
+
 def get_E_pv(zone_climatique):
     """
     Implement first table of section 18.2
@@ -140,13 +178,43 @@ def get_E_pv(zone_climatique):
                    header_start=1)
     return(t['Mois', zone_climatique])
 
-def get_Text(zone_climatique, altitude):
-    if altitude <= 400:
-        filename = 'text_b400.txt'
-    elif altitude > 800:
-        filename = 'text_o800.txt'
+
+
+
+def get_c1(zone_climatique, i_incl):
+    filename =  'coiv_' + zone_climatique.lower() + '.csv'
+    if not os.path.exists(filename):
+        result = []
+        for root, dirs, files in os.walk(DATA_DIR):
+            if filename in files:
+                result.append(os.path.join(root, filename))
+                if len(result) == 1:
+                    fullpath = result[0]
+                else:
+                    raise ValueError('could not locate {} filename, found {}'.format(filename, result))
     else:
-        filename = 'text_b400_800.txt'
-    t = Table.read(os.path.join(DATA_DIR, filename), format='ascii',
-                   header_start=1)
-    return(t['Mois', zone_climatique])
+        fullpath = filename
+    f = open(fullpath, 'r')
+    lines = f.readlines()
+    f.close()
+    
+    m_vals = []
+    s_vals = []
+    o_vals = []
+    n_vals = []
+    e_vals = []
+    for i, line in enumerate(lines):
+        if i > 1:
+            bits = line.split(',')
+            m_vals.append(bits[0])
+            s_vals.append(float(bits[i_incl+1]))
+            o_vals.append(float(bits[i_incl+4]))
+            n_vals.append(float(bits[i_incl+7]))
+            e_vals.append(float(bits[i_incl+10]))
+    result = Table()
+    result['Mois'] = m_vals
+    result['Sud'] = s_vals
+    result['Ouest'] = o_vals
+    result['Nord'] = n_vals
+    result['Est'] = e_vals
+    return result
